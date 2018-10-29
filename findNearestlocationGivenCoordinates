@@ -1,0 +1,76 @@
+package genericDataType;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
+import java.lang.*;
+
+public class Amazon {
+	
+	public static void main(String arg[]){
+		
+			List<List<Integer>> list = new ArrayList<List<Integer>>();
+			
+			  List<Integer> innerList = new ArrayList<Integer>(2);
+			  innerList.add(1);
+			  innerList.add(2);
+			  list.add(innerList);
+			  List<Integer> innerList1 = new ArrayList<Integer>(2);
+			  innerList1.add(3);
+			  innerList1.add(4);
+			  list.add(innerList1);
+			  List<Integer> innerList2 = new ArrayList<Integer>(2);
+			  innerList2.add(13);
+			  innerList2.add(14);
+			  list.add(innerList2);
+			  List<Integer> innerList3 = new ArrayList<Integer>(2);
+			  innerList3.add(1);
+			  innerList3.add(1);
+			  list.add(innerList3);
+			  
+			  int NoOfLocationGiven = 4;
+			  int NoOfLocationToOutput = 1;
+					
+			  
+			  
+			
+			List<List<Integer>> result = findNearestlocation(list, NoOfLocationGiven,NoOfLocationToOutput);
+			
+			
+			
+			for(List<Integer> resultCoordinate : result){
+				System.out.println(resultCoordinate);
+			}
+			
+	
+	}
+	private static List<List<Integer>> findNearestlocation(List<List<Integer>> ListOfNearestLocation, int NoOfLocationGiven, int NoOfLocationToOutput) {
+		int distance =0;
+		List<List<Integer>> output = new ArrayList<List<Integer>>();
+		TreeMap<Integer,List<Integer>> result = new TreeMap<Integer, List<Integer>>();
+		for(List<Integer> ListOfCoordinate : ListOfNearestLocation){			
+			
+			distance =((ListOfCoordinate.get(0))+(ListOfCoordinate.get(1)));
+			result.put(distance, ListOfCoordinate);		
+			
+		}
+		
+		for( Integer list:result.keySet()){
+			if(NoOfLocationToOutput>0){
+				output.add(result.get(list));
+				NoOfLocationToOutput--;
+			}
+			
+		}
+		return output;
+	}
+	
+	
+		
+	
+
+}
